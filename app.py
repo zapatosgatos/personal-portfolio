@@ -22,7 +22,7 @@ def is_valid_signature(x_hub_signature, data, private_key):
 
 @app.route('/')
 def hello_world():
-    return 'Newer extra fancy updates'
+    return 'Newer extra fancy updates Mk. 1'
 
 @app.route('/update_server', methods=['POST'])
 def webhook():

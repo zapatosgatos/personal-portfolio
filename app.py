@@ -1,7 +1,7 @@
 
 # A very simple Flask Hello World app for you to get started with...
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 import git
 import hmac
 import hashlib
@@ -22,7 +22,8 @@ def is_valid_signature(x_hub_signature, data, private_key):
 
 @app.route('/')
 def hello_world():
-    return 'Newer extra fancy updates Mk. 1'
+    return render_template('index.html')
+    #return 'Newer extra fancy updates Mk. 1'
 
 @app.route('/update_server', methods=['POST'])
 def webhook():

@@ -9,7 +9,7 @@ import os
 
 github_signature = os.getenv("GIT_SECRET_KEY")
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 
 def is_valid_signature(x_hub_signature, data, private_key):
     # x_hub_signature and data are from the webhook payload
@@ -22,7 +22,7 @@ def is_valid_signature(x_hub_signature, data, private_key):
 
 @app.route('/')
 def hello_world():
-    return render_template('templates/index.html')
+    return render_template('index.html')
     #return 'Newer extra fancy updates Mk. 1'
 
 @app.route('/update_server', methods=['POST'])

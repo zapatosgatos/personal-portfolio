@@ -25,6 +25,7 @@ def hello_world():
     return render_template('index.html')
     #return 'Newer extra fancy updates Mk. 1'
 
+#Handles the github webhook
 @app.route('/update_server', methods=['POST'])
 def webhook():
     if request.method == 'POST':

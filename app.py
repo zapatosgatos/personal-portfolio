@@ -37,8 +37,8 @@ def webhook():
 
 
 @app.route('/')
-def home():
-    return render_template('index.html')
+def about():
+    return render_template('about.html')
 
 
 @app.route('/portfolio')
@@ -47,5 +47,5 @@ def portfolio():
 
 
 @app.route('/about')
-def about():
-    return render_template('about.html')
+def contact():
+    return render_template('contact.html')

@@ -20,11 +20,6 @@ def is_valid_signature(x_hub_signature, data, private_key):
     mac = hmac.new(encoded_key, msg=data, digestmod=algorithm)
     return hmac.compare_digest(mac.hexdigest(), github_signature)
 
-@app.route('/')
-def hello_world():
-    return render_template('index.html')
-    #return 'Newer extra fancy updates Mk. 1'
-
 #Handles the github webhook
 @app.route('/update_server', methods=['POST'])
 def webhook():
@@ -39,3 +34,18 @@ def webhook():
             return 'Not valid signature', 400
     else:
         return 'Wrong event type', 400
+
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+
+
+@app.route('/portfolio')
+def portfolio():
+    return render_template('portfolio.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')

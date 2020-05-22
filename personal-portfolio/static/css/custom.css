@@ -1,8 +1,16 @@
 /*Navbar*/
-.navbar-font{
+.navbar-font {
   font-family: 'Abel', sans-serif;
 }
 
+.navbar-brand-custom {
+  font-size: 40 px;
+}
+
+.navbar-link {
+  font-size: 30 px;
+}
+
 .navbar-inner {
-    background:transparent;
+  background:transparent;
 }

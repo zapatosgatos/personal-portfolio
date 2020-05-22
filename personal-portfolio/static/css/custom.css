@@ -1,3 +1,8 @@
+/*Navbar*/
 .navbar-font{
   font-family: 'Abel', sans-serif;
+}
+
+.navbar-inner {
+    background:transparent;
 }

@@ -9,7 +9,7 @@ import os
 
 github_signature = os.getenv("GIT_SECRET_KEY")
 
-app = Flask(__name__, template_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/templates')
+app = Flask(__name__, template_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/templates', static_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/static')
 
 def is_valid_signature(x_hub_signature, data, private_key):
     # x_hub_signature and data are from the webhook payload

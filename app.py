@@ -46,6 +46,6 @@ def portfolio():
     return render_template('portfolio.html')
 
 
-@app.route('/about')
+@app.route('/contact')
 def contact():
     return render_template('contact.html')

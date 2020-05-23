@@ -1,8 +1,13 @@
-/*Navbar*/
-.navbar-font {
+/*Fonts*/
+.abel-font {
   font-family: 'Abel', sans-serif;
 }
 
+.montserrat-font {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/*Navbar*/
 .navbar-brand-custom {
   font-size: 30px;
 }

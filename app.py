@@ -66,10 +66,10 @@ def contact():
 
 
 @app.route('/portfolio/reddit_project')
-def about():
+def reddit():
     return render_template('projects/reddit_project.html')
 
 
 @app.route('/portfolio/spotify_project')
-def about():
+def spotify():
     return render_template('projects/spotify_project.html')

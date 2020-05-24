@@ -3,7 +3,7 @@ $(document).ready(function(){
     $(".card").toggleClass('d-none');
   })*/
   $("form").on('submit',function(){
-    $(".card").toggleClass('d-none');
+    $(".alert").toggleClass('d-none');
 
     console.log("Redirecting...")
     setTimeout(function() {

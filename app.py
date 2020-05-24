@@ -6,6 +6,7 @@ import git
 import hmac
 import hashlib
 import os
+import requests
 
 github_signature = os.getenv("GIT_SECRET_KEY")
 email_api_key = os.getenv("EMAIL_SECRET_KEY")
@@ -49,9 +50,9 @@ def portfolio():
 
 @app.route('/contact', methods=["GET","POST"])
 def contact():
-    if request.method == "GET":
-        return render_template('contact.html')
-    elif request.method == "POST":
+    #if request.method == "GET":
+    #    return render_template('contact.html')
+    if request.method == "POST":
         return requests.post(
 		"https://api.mailgun.net/v3/sandboxad9646f00f0240fd8e3a70f71f5c86ae.mailgun.org/messages",
 		auth=("api", email_api_key),

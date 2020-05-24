@@ -8,6 +8,7 @@ import hashlib
 import os
 
 github_signature = os.getenv("GIT_SECRET_KEY")
+email_api_key = os.getenv("EMAIL_SECRET_KEY")
 
 app = Flask(__name__, template_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/templates', static_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/static')
 
@@ -46,6 +47,15 @@ def portfolio():
     return render_template('portfolio.html')
 
 
-@app.route('/contact')
+@app.route('/contact', methods=["GET","POST"])
 def contact():
-    return render_template('contact.html')
+    if request.method == "GET":
+        return render_template('contact.html')
+    else if request.method == "POST":
+        return requests.post(
+		"https://api.mailgun.net/v3/sandboxad9646f00f0240fd8e3a70f71f5c86ae.mailgun.org/messages",
+		auth=("api", email_api_key),
+		data={"from": "Mailgun Sandbox <postmaster@sandboxad9646f00f0240fd8e3a70f71f5c86ae.mailgun.org>",
+			"to": "MICHAEL BOSTWICK <bostwicm@gmail.com>",
+			"subject": request.form['emailSubject'],
+			"text": 'Name: ' + request.form['submitterName'] + '\n\n' + 'Email: ' + request.form['submitterEmail'] + '\n\n' + request.form['emailBody']})

@@ -63,3 +63,13 @@ def contact():
         r
 
     return render_template('contact.html')
+
+
+@app.route('/portfolio/reddit_project')
+def about():
+    return render_template('projects/reddit_project.html')
+
+
+@app.route('/portfolio/spotify_project')
+def about():
+    return render_template('projects/spotify_project.html')

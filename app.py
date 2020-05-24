@@ -51,7 +51,7 @@ def portfolio():
 def contact():
     if request.method == "GET":
         return render_template('contact.html')
-    else if request.method == "POST":
+    elif request.method == "POST":
         return requests.post(
 		"https://api.mailgun.net/v3/sandboxad9646f00f0240fd8e3a70f71f5c86ae.mailgun.org/messages",
 		auth=("api", email_api_key),

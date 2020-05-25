@@ -72,7 +72,12 @@ def contact():
 def reddit():
     if request.method == "POST":
         subreddit = request.json['data']
-        return subreddit
+        redditInstance = praw.Reddit(client_id=praw_client_id, client_secret=praw_secret_key, user_agent="web:michaelbostwick.com/portfolio/reddit_project:v1.0.0 (by /u/zapatosgatos)")
+
+        for post in redditInstance.subreddit(subreddit).top("day", limit=10):
+            posts[post.title] = post.url
+
+        return posts
 
     return render_template('projects/reddit_project.html')
 

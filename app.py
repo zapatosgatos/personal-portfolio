@@ -7,9 +7,12 @@ import hmac
 import hashlib
 import os
 import requests
+import praw
 
 github_signature = os.getenv("GIT_SECRET_KEY")
 email_api_key = os.getenv("EMAIL_SECRET_KEY")
+praw_client_id = os.getenv("PRAW_CLIENT_ID")
+praw_secret_key = os.getenv("PRAW_SECRET_KEY")
 
 app = Flask(__name__, template_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/templates', static_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/static')
 
@@ -67,6 +70,10 @@ def contact():
 
 @app.route('/portfolio/reddit_project')
 def reddit():
+    if request.method == "POST":
+        subreddit = request.json['data']
+        return subreddit
+
     return render_template('projects/reddit_project.html')
 
 

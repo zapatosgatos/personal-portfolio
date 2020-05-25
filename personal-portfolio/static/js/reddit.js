@@ -5,7 +5,8 @@ $(function(){
 		$.ajax({
 			url: '/portfolio/reddit_project',
 			//data: $('form').serialize(),
-      data: {'data':subreddit},
+      data: JSON.stringify({'data':subreddit}),
+      contentType: "application/json",
       type: 'POST',
 			success: function(response){
 				console.log(response);

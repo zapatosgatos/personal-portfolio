@@ -38,3 +38,12 @@
 .navbar-inner {
   background:transparent;
 }
+
+
+/*-----------------------------------------------------------------------*/
+/*Reddit Project*/
+/*-----------------------------------------------------------------------*/
+a.search-results-card,
+a.search-results-card:hover {
+  color: inherit;
+}

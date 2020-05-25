@@ -11,10 +11,17 @@ $(function(){
 			success: function(response){
         if($('#searchResults').hasClass('d-none')) {
           $('#searchResults').toggleClass('d-none');
+        } else {
+          $('#searchResults').empty();
         }
 
         $.each(response, function(key, value) {
           console.log(key + ": " + value);
+          $('#searchResults').append('<a href="' + value + '" class="search-results-card" target="_blank">'
+            + '<div class="card bg-light mb-3">'
+            + '<div class="card-header montserrat-font">' + key + '</div>'
+            + '</div></a>'
+          );
         });
 
 			},

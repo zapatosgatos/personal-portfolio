@@ -9,7 +9,14 @@ $(function(){
       contentType: "application/json",
       type: 'POST',
 			success: function(response){
-				console.log(response);
+        if($('#searchResults').hasClass('d-none')) {
+          $('#searchResults').toggleClass('d-none');
+        }
+
+        $.each(response, function(key, value) {
+          console.log(key + ": " + value);
+        });
+
 			},
 			error: function(error){
 				console.log(error);

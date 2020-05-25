@@ -76,7 +76,7 @@ def reddit():
         posts = {}
 
         for post in redditInstance.subreddit(subreddit).top("day", limit=10):
-            posts[post.title] = post.url
+            posts[post.title] = post.permalink
 
         return posts
 

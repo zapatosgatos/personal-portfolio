@@ -1,5 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <p>This is the reddit project page</p>
+  <div class="row pt-5 pb-5">
+    <h1 class="abel-font text-center">Reddit Search</h1>
+    <!--<h3 class="montserrat-font text-center">This is a simple search page that takes in a subreddit and displays the top 10 posts for the last day with links.</h3>
+    <h4 class="montserrat-font text-center">Technologies Used: Flask, Bootstrap, PRAW Reddit API wrapper, AJAX</h4>-->
+  </div>
+  <hr class="w-100" />
+  <div class="row pt-5">
+    <div class="col-lg-8 order-sm-2">
+      <div class="input-group mb-3 mx-auto w-50">
+        <input type="text" class="form-control" placeholder="Subreddit Search" aria-label="Subreddit Search" aria-describedby="subreddit-search">
+        <div class="input-group-append">
+          <button class="btn btn-outline-success" type="button">Search</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 order-sm-1 border-left">
+      <h3 class="montserrat-font text-center">This is a simple search page that takes in a subreddit and displays the top 10 posts for the last day with links.</h3>
+      <hr class="w-100" />
+      <h4 class="montserrat-font text-center">Technologies Used: Flask, Bootstrap, PRAW Reddit API wrapper, AJAX</h4>
+    </div>
+  </div>
 {% endblock %}

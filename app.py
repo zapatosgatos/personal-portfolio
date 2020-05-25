@@ -68,7 +68,7 @@ def contact():
     return render_template('contact.html')
 
 
-@app.route('/portfolio/reddit_project')
+@app.route('/portfolio/reddit_project', methods=["GET","POST"])
 def reddit():
     if request.method == "POST":
         subreddit = request.json['data']

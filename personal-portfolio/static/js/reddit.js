@@ -1,10 +1,16 @@
 $(function(){
+  $('#txtSearchProdAssign').keypress(function (e) {
+    var key = e.which;
+    if(key == 13)  // the enter key code
+    {
+      $('button').click();
+    }
+  });
+
 	$('button').click(function(){
 		var subreddit = $('#subreddit').val();
-		//var pass = $('#inputPassword').val();
 		$.ajax({
 			url: '/portfolio/reddit_project',
-			//data: $('form').serialize(),
       data: JSON.stringify({'data':subreddit}),
       contentType: "application/json",
       type: 'POST',
@@ -16,9 +22,8 @@ $(function(){
         }
 
         $.each(response, function(key, value) {
-          console.log(key + ": " + value);
-          $('#searchResults').append('<a href="' + value + '" class="search-results-card" target="_blank">'
-            + '<div class="card bg-light mb-3">'
+          $('#searchResults').append('<a href="https://www.reddit.com/' + value + '" class="search-results-card" target="_blank">'
+            + '<div class="card bg-mint mb-3">'
             + '<div class="card-header montserrat-font">' + key + '</div>'
             + '</div></a>'
           );

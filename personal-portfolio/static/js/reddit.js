@@ -1,5 +1,5 @@
 $(function(){
-  $('#txtSearchProdAssign').keypress(function (e) {
+  $('#subreddit').keypress(function (e) {
     var key = e.which;
     if(key == 13)  // the enter key code
     {
@@ -24,7 +24,7 @@ $(function(){
         $.each(response, function(key, value) {
           $('#searchResults').append('<a href="https://www.reddit.com/' + value + '" class="search-results-card" target="_blank">'
             + '<div class="card bg-mint mb-3">'
-            + '<div class="card-header montserrat-font">' + key + '</div>'
+            + '<div class="card-body montserrat-font">' + key + '</div>'
             + '</div></a>'
           );
         });

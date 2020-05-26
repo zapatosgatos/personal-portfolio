@@ -22,7 +22,7 @@ $(function(){
         }
 
         $.each(response, function(key, value) {
-          $('#searchResults').append('<a href="https://www.reddit.com/' + value + '" class="search-results-card" target="_blank">'
+          $('#searchResults').append('<a href="https://www.reddit.com' + value + '" class="search-results-card" target="_blank">'
             + '<div class="card bg-mint mb-3">'
             + '<div class="card-body montserrat-font">' + key + '</div>'
             + '</div></a>'

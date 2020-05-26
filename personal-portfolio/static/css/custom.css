@@ -29,15 +29,15 @@
   background-color: #a5e6d3 !important;
 }
 
-.btn-outline-mint {
-  color: #a5e6d3;
+.btn-outline-darkmint {
+  color: #60ab95;
   background-color: transparent;
   background-image: none;
-  border-color: #a5e6d3;
+  border-color: #60ab95;
 }
 
-.plain-link a {
-  color: #a5e6d3;
+.plain-link {
+  color: #60ab95 !important;
 }
 
 

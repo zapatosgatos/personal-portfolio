@@ -48,11 +48,11 @@
 
 .white-gradient-background {
   background: linear-gradient(-45deg, #ebedee, #fdfbfb);
-  border-color: white;
 }
 
 .blue-gradient-background {
   background: linear-gradient(-45deg, #c3cfe2, #f5f7fa);
+  border-color: white;
 }
 
 
@@ -98,5 +98,5 @@ a.search-results-card:hover {
 /*Spotify Project*/
 /*-----------------------------------------------------------------------*/
 .project-card-hover:hover {
-  
+
 }

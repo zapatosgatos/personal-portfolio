@@ -46,8 +46,12 @@
   color: #60ab95 !important;
 }
 
-.light-gradient-background {
-  background: linear-gradient(-45deg, #f5f7fa, #c3cfe2);
+.white-gradient-background {
+  background: linear-gradient(-45deg, #ebedee, #fdfbfb);
+}
+
+.blue-gradient-background {
+  background: linear-gradient(-45deg, #c3cfe2, #f5f7fa);
 }
 
 

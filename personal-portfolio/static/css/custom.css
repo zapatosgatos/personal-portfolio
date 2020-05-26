@@ -48,6 +48,7 @@
 
 .white-gradient-background {
   background: linear-gradient(-45deg, #ebedee, #fdfbfb);
+  border-color: white;
 }
 
 .blue-gradient-background {
@@ -90,4 +91,12 @@ a.search-results-card,
 a.search-results-card:hover {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   color: inherit;
+}
+
+
+/*-----------------------------------------------------------------------*/
+/*Spotify Project*/
+/*-----------------------------------------------------------------------*/
+.project-card-hover:hover {
+  
 }

@@ -3,11 +3,11 @@ $(function(){
     var key = e.which;
     if(key == 13)  // the enter key code
     {
-      $('button').click();
+      $('#search').click();
     }
   });
 
-	$('button').click(function(){
+	$('#search').click(function(){
 		var subreddit = $('#subreddit').val();
 		$.ajax({
 			url: '/portfolio/reddit_project',

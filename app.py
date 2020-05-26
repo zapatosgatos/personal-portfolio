@@ -8,11 +8,15 @@ import hashlib
 import os
 import requests
 import praw
+import spotipy
+import spotipy.oauth2 as oauth2
 
 github_signature = os.getenv("GIT_SECRET_KEY")
 email_api_key = os.getenv("EMAIL_SECRET_KEY")
 praw_client_id = os.getenv("PRAW_CLIENT_ID")
 praw_secret_key = os.getenv("PRAW_SECRET_KEY")
+spotify_client_id = os.getenv("SPOTIFY_CLIENT_ID")
+spotify_secret_key = os.getenv("SPOTIFY_SECRET_KEY")
 
 app = Flask(__name__, template_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/templates', static_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/static')
 
@@ -83,6 +87,21 @@ def reddit():
     return render_template('projects/reddit_project.html')
 
 
-@app.route('/portfolio/spotify_project')
+@app.route('/portfolio/spotify_project', methods=["GET","POST"])
 def spotify():
+    if request.method == "POST":
+        album = request.json['data']
+        credentials = oauth2.SpotifyClientCredentials(
+            client_id = spotify_client_id,
+            client_secret = spotify_secret_key
+        )
+        token = credentials.get_access_token()
+
+        sp = spotipy.Spotify(auth=token)
+        albumInfo = sp.search(q='album:' + album, type='album', limit='1')
+        for x in albumInfo['albums']['items']:
+            album_id = x['id']
+
+        return album_id
+
     return render_template('projects/spotify_project.html')

@@ -1,18 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <div class="row pt-5 pb-2">
+    <h1 class="abel-font mx-auto">Projects</h1>
+  </div>
+  <hr class="w-100" />
+
   <div class="row pt-5">
     <div class="col-lg-4">
       <div class="card mb-2">
         <div class="card-body">
             <h5 class="card-title">Reddit Search</h5>
-            <p class="card-text">Takes in a subreddit as input and displays the top 5 posts from the last day.</p>
+            <p class="card-text">Takes in a subreddit as input and displays the top 10 posts from the last day.</p>
             <a href="/portfolio/reddit_project" class="btn btn-primary">Read More</a>
         </div>
       </div>
     </div>
 
-    <div class="col-lg-4">
+    <!--<div class="col-lg-4">
       <div class="card mb-2">
         <div class="card-body">
             <h5 class="card-title">Spotify Search</h5>
@@ -30,6 +35,6 @@
             <a href="/portfolio/reddit_project" class="btn btn-primary">Read More</a>
         </div>
       </div>
-    </div>
+    </div>-->
   </div>
 {% endblock %}

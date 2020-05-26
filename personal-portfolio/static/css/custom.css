@@ -29,6 +29,12 @@
   background-color: #a5e6d3 !important;
 }
 
+.btn-mint {
+  color: #212529;
+  background-color: #a5e6d3;
+  border-color: #a5e6d3;
+}
+
 .btn-outline-darkmint {
   color: #60ab95;
   background-color: transparent;

@@ -105,7 +105,7 @@ def spotify():
         for x in artistInfo['artists']['items']:
             artist_id = x['id']
 
-        albums = sp.artist(artist_id)
+        albums = sp.artist_albums(artist_id, album_type='album')
 
 
         return albums

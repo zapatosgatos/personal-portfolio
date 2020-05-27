@@ -96,7 +96,8 @@ def spotify():
             client_secret = spotify_secret_key
         )
         token = credentials.get_access_token()
-
+        full_discography = {}
+        album_tracks = []
         sp = spotipy.Spotify(auth=token)
         #albumInfo = sp.search(q='album:' + album, type='album', limit='1')
         #for x in albumInfo['albums']['items']:
@@ -106,8 +107,13 @@ def spotify():
             artist_id = x['id']
 
         albums = sp.artist_albums(artist_id, album_type='album')
+        for album in albums['items']:
+            album_tracks = []
+            tracks = sp.album_tracks(album['id'])
+            for track in tracks['items']:
+                album_tracks.append(track['name'])
+            full_discography[album['name']] = album_tracks
 
-
-        return albums
+        return full_discography
 
     return render_template('projects/spotify_project.html')

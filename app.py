@@ -90,7 +90,7 @@ def reddit():
 @app.route('/portfolio/spotify_project', methods=["GET","POST"])
 def spotify():
     if request.method == "POST":
-        album = request.json['data']
+        artist = request.json['data']
         credentials = oauth2.SpotifyClientCredentials(
             client_id = spotify_client_id,
             client_secret = spotify_secret_key
@@ -98,10 +98,13 @@ def spotify():
         token = credentials.get_access_token()
 
         sp = spotipy.Spotify(auth=token)
-        albumInfo = sp.search(q='album:' + album, type='album', limit='1')
-        for x in albumInfo['albums']['items']:
-            album_id = x['id']
+        #albumInfo = sp.search(q='album:' + album, type='album', limit='1')
+        #for x in albumInfo['albums']['items']:
+        #    album_id = x['id']
+        artistInfo = sp.search(q='artist:' + artist, type='artist', limit='25')
+        #for x in artistInfo['']
 
-        return album_id
+
+        return artistInfo
 
     return render_template('projects/spotify_project.html')

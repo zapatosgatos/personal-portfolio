@@ -1,5 +1,5 @@
 $(function(){
-  $('#album').keypress(function (e) {
+  $('#artist').keypress(function (e) {
     var key = e.which;
     if(key == 13)  // the enter key code
     {
@@ -8,10 +8,10 @@ $(function(){
   });
 
 	$('#search').click(function(){
-		var album = $('#album').val();
+		var artist = $('#artist').val();
 		$.ajax({
 			url: '/portfolio/spotify_project',
-      data: JSON.stringify({'data':album}),
+      data: JSON.stringify({'data':artist}),
       contentType: "application/json",
       type: 'POST',
 			success: function(response){

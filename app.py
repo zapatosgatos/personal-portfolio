@@ -101,10 +101,13 @@ def spotify():
         #albumInfo = sp.search(q='album:' + album, type='album', limit='1')
         #for x in albumInfo['albums']['items']:
         #    album_id = x['id']
-        artistInfo = sp.search(q='artist:' + artist, type='artist', limit='25')
-        #for x in artistInfo['']
+        artistInfo = sp.search(q='artist:' + artist, type='artist', limit='1')
+        for x in artistInfo['artists']['items']:
+            artist_id = x['id']
+
+        albums = sp.artist(artist_id)
 
 
-        return artistInfo
+        return albums
 
     return render_template('projects/spotify_project.html')

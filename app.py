@@ -136,6 +136,7 @@ def spotify():
                 album_tracks.append(track['name'])
             full_discography[album['name']] = album_tracks
             '''
+            tracks = []
             individual_album = {}
             individual_album['name'] = album['name']
             spTracks = sp.album_tracks(album['id'])

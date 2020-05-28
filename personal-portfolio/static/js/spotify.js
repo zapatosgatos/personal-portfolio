@@ -98,5 +98,16 @@ $(function(){
 		});
 	});
 
-  window.onresize = resize;
+  $(window).resize(function(){
+    width = document.getElementById('searchResults').clientWidth;
+    height = width;
+    radius = Math.min(width, height) / 2;
+    //var color = d3.scaleOrdinal(d3.schemeCategory20b);
+
+    g = d3.select('#searchResults svg')
+      .attr('width', width)
+      .attr('height', height)
+      .append('g')
+      .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+  };
 });

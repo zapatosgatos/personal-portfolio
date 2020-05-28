@@ -97,7 +97,10 @@ def spotify():
         )
         token = credentials.get_access_token()
         full_discography = {}
-        album_tracks = []
+        albums = []     #children
+        individual_album = {}
+        tracks = []
+        individual_track = {}
         sp = spotipy.Spotify(auth=token)
         #albumInfo = sp.search(q='album:' + album, type='album', limit='1')
         #for x in albumInfo['albums']['items']:
@@ -106,13 +109,47 @@ def spotify():
         for x in artistInfo['artists']['items']:
             artist_id = x['id']
 
-        albums = sp.artist_albums(artist_id, album_type='album')
-        for album in albums['items']:
+        '''
+        full_discography = {
+            'name': artist, 'children': [{
+                'name': album_title1,
+                'children': [{'name': track1, 'size': 1}, {'name': track2, 'size': 1}]
+            }, {
+                'name': album_title2,
+                'children': [{'name': track1, 'size': 1}, {'name': track2, 'size': 1}]
+            }]
+        }
+
+        full_discography = {
+            name=artist, albums[{individual_album1}, {individual_album2}]
+        }
+        '''
+
+        full_discography['name'] = artist
+
+        spAlbums = sp.artist_albums(artist_id, album_type='album')
+        for album in spAlbums['items']:
+            '''
             album_tracks = []
             tracks = sp.album_tracks(album['id'])
             for track in tracks['items']:
                 album_tracks.append(track['name'])
             full_discography[album['name']] = album_tracks
+            '''
+            individual_album = {}
+            individual_album['name'] = album['name']
+            spTracks = sp.album_tracks(album['id'])
+            for track in spTracks['items']:
+                individual_track = {}
+                individual_track['name'] = track['name']
+                individual_track['size'] = 1
+                tracks.append(individual_track)
+
+            individual_album['children'] = tracks
+
+            albums.append(individual_album)
+
+        full_discography['children'] = albums
 
         return full_discography
 

@@ -33,7 +33,7 @@ $(function(){
           .append('g')
           .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
-        function resize() {
+        /*function resize() {
           width = document.getElementById('searchResults').clientWidth;
           height = width;
           radius = Math.min(width, height) / 2;
@@ -44,7 +44,7 @@ $(function(){
             .attr('height', height)
             .append('g')
             .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
-        }
+        }*/
 
         //window.onresize = resize;
         //var radius = Math.min(width, height) / 2;
@@ -98,7 +98,7 @@ $(function(){
 		});
 	});
 
-  $(window).resize(function(){
+  /*$(window).resize(function(){
     width = document.getElementById('searchResults').clientWidth;
     height = width;
     radius = Math.min(width, height) / 2;
@@ -109,5 +109,5 @@ $(function(){
       .attr('height', height)
       .append('g')
       .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
-  };
+  };*/
 });

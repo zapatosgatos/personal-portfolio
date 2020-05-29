@@ -21,35 +21,12 @@ $(function(){
           $('#searchResults').empty();
         }
         console.log(response);
+
+        var format = d3.format(",d");
         var width = document.getElementById('searchResults').clientWidth;
         var height = width;
         var radius = Math.min(width, height) / 2;
-        //var color = d3.scaleOrdinal(d3.schemeCategory10);
-        var color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, response.children.length + 1))
-        //var svg = d3.select('#searchResults').append('svg');
-        //const root = d3.partition(response);
-        //root.each(d => d.current = d);
-        //var partition = d3.partition(response)
-        //  .size([2 * Math.PI, radius]);
-        //var root = d3.hierarchy(response)
-        //    .sum(function (d) { return d.size});
-        var part = d3.partition()
-          .size([2 * Math.PI, radius]);
-
-        var root = d3.hierarchy(response)
-          .sum(function (d) { return d.size});
-
-        root.each(d => d.current = d);
-
-        var svg = d3.select('#searchResults').append('svg')
-          .attr('width', width)
-          .attr('height', height)
-          //.attr("viewBox", [0, 0, width, width])
-          .style("font", "10px sans-serif");
-
-        var g = svg.append("g")
-            //.attr("transform", `translate(${width / 2},${width / 2})`);
-            .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
+        //var color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, response.children.length + 1))
 
         var arc = d3.arc()
           .startAngle(d => d.x0)
@@ -59,35 +36,56 @@ $(function(){
           .innerRadius(d => d.y0 * radius)
           .outerRadius(d => Math.max(d.y0 * radius, d.y1 * radius - 1));
 
+        var partition = response => {
+            var root = d3.hierarchy(response)
+                    .sum(d => d.size)
+                    .sort((a, b) => b.value - a.value);
+            return d3.partition()
+                    .size([2 * Math.PI, root.height + 1])
+                    (root);
+        }
+
+        var root = partition(response);
+        var color = d3.scaleOrdinal().range(d3.quantize(d3.interpolateRainbow, data.children.length + 1));
+        console.log(root);
+        root.each(d => d.current = d);
+
+        var svg = d3.select('#searchResults').append('svg')
+          .attr('width', width)
+          .attr('height', height)
+          //.attr("viewBox", [0, 0, width, width])
+          .style("font", "10px sans-serif");
+
+        var g = svg.append("g")
+          .attr("transform", `translate(${width / 2},${width / 2})`);
+
         var path = g.append("g")
           .selectAll("path")
           .data(root.descendants().slice(1))
-          //.join("path")
-          .enter().append("path")
-            .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
-            .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
-            .attr("d", d => arc(d.current));
+          .join("path")
+          .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
+          .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
+          .attr("d", d => arc(d.current));
 
         path.filter(d => d.children)
-            .style("cursor", "pointer")
-            .on("click", clicked);
+          .style("cursor", "pointer")
+          .on("click", clicked);
 
         path.append("title")
-            //.text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
+            .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
             .text(function(d) { return d.parent ? d.data.name : "" });
 
         var label = g.append("g")
-            .attr("pointer-events", "none")
-            .attr("text-anchor", "middle")
-            .style("user-select", "none")
+          .attr("pointer-events", "none")
+          .attr("text-anchor", "middle")
+          .style("user-select", "none")
           .selectAll("text")
           .data(root.descendants().slice(1))
-          //.join("text")
-          .enter().append("path")
-            .attr("dy", "0.35em")
-            .attr("fill-opacity", d => +labelVisible(d.current))
-            //.attr("transform", d => labelTransform(d.current))
-            .text(d => d.data.name);
+          .join("text")
+          .attr("dy", "0.35em")
+          .attr("fill-opacity", d => +labelVisible(d.current))
+          .attr("transform", d => labelTransform(d.current))
+          .text(d => d.data.name);
 
         var parent = g.append("circle")
             .datum(root)
@@ -108,9 +106,6 @@ $(function(){
 
           var t = g.transition().duration(750);
 
-          // Transition the data on all arcs, even the ones that aren’t visible,
-          // so that if this transition is interrupted, entering arcs will start
-          // the next transition from the desired position.
           path.transition(t)
               .tween("data", d => {
                 var i = d3.interpolate(d.current, d.target);
@@ -119,14 +114,14 @@ $(function(){
             .filter(function(d) {
               return +this.getAttribute("fill-opacity") || arcVisible(d.target);
             })
-              .attr("fill-opacity", d => arcVisible(d.target) ? (d.children ? 0.6 : 0.4) : 0)
-              .attrTween("d", d => () => arc(d.current));
+            .attr("fill-opacity", d => arcVisible(d.target) ? (d.children ? 0.6 : 0.4) : 0)
+            .attrTween("d", d => () => arc(d.current));
 
           label.filter(function(d) {
               return +this.getAttribute("fill-opacity") || labelVisible(d.target);
             }).transition(t)
               .attr("fill-opacity", d => +labelVisible(d.target))
-              //.attrTween("transform", d => () => labelTransform(d.current));
+              .attrTween("transform", d => () => labelTransform(d.current));
         }
 
         function arcVisible(d) {
@@ -140,8 +135,8 @@ $(function(){
         function labelTransform(d) {
           var x = (d.x0 + d.x1) / 2 * 180 / Math.PI;
           var y = (d.y0 + d.y1) / 2 * radius;
-          return 'rotate(' + (x - 90) + ') translate(' + y + ',0) rotate(' + (x < 180 ? 0 : 180) + ')';
-          //rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`
+          //return 'rotate(' + (x - 90) + ') translate(' + y + ',0) rotate(' + (x < 180 ? 0 : 180) + ')';
+          return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
         }
 
         //return svg.node();

@@ -66,7 +66,7 @@ $(function(){
 
         path.append("title")
             //.text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
-            .text(function(d) { return d.parent ? d.data.name : "" });)
+            .text(function(d) { return d.parent ? d.data.name : "" });
 
         const label = g.append("g")
             .attr("pointer-events", "none")

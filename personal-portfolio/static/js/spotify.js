@@ -28,10 +28,12 @@ $(function(){
         //var svg = d3.select('#searchResults').append('svg');
         //const root = d3.partition(response);
         //root.each(d => d.current = d);
-        var partition = d3.partition(response)
+        //var partition = d3.partition(response)
+        //  .size([2 * Math.PI, radius]);
+        //var root = d3.hierarchy(response)
+        //    .sum(function (d) { return d.size});
+        const root = d3.partition(response)
           .size([2 * Math.PI, radius]);
-        var root = d3.hierarchy(response)
-            .sum(function (d) { return d.size});
 
         const svg = d3.select('#searchResults').append('svg')
           .attr('width', width)
@@ -44,7 +46,7 @@ $(function(){
 
         const path = g.append("g")
           .selectAll("path")
-          .data(partition.descendants().slice(1))
+          .data(root.descendants().slice(1))
           //.join("path")
           .enter().append("path")
             .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
@@ -63,7 +65,7 @@ $(function(){
             .attr("text-anchor", "middle")
             .style("user-select", "none")
           .selectAll("text")
-          .data(partition.descendants().slice(1))
+          .data(root.descendants().slice(1))
           //.join("text")
           .enter().append("path")
             .attr("dy", "0.35em")
@@ -72,16 +74,16 @@ $(function(){
             .text(d => d.data.name);
 
         const parent = g.append("circle")
-            .datum(partition)
+            .datum(root)
             .attr("r", radius)
             .attr("fill", "none")
             .attr("pointer-events", "all")
             .on("click", clicked);
 
         function clicked(p) {
-          parent.datum(p.parent || partition);
+          parent.datum(p.parent || root);
 
-          partition.each(d => d.target = {
+          root.each(d => d.target = {
             x0: Math.max(0, Math.min(1, (d.x0 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
             x1: Math.max(0, Math.min(1, (d.x1 - p.x0) / (p.x1 - p.x0))) * 2 * Math.PI,
             y0: Math.max(0, d.y0 - p.depth),

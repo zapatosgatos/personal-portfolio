@@ -57,8 +57,7 @@ $(function(){
           .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
           .padRadius(radius * 1.5)
           .innerRadius(d => d.y0 * radius)
-          .outerRadius(d => Math.max(d.y0 * radius, d.y1 * radius - 1))
-        }
+          .outerRadius(d => Math.max(d.y0 * radius, d.y1 * radius - 1));
 
         var path = g.append("g")
           .selectAll("path")

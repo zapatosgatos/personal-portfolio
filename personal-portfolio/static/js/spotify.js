@@ -29,7 +29,7 @@ $(function(){
         //root.each(d => d.current = d);
         var partition = d3.partition()
           .size([2 * Math.PI, radius]);
-        var root = d3.hierarchy()
+        var root = d3.hierarchy(response)
             .sum(function (d) { return d.size});
 
         const svg = d3.select('#searchResults').append('svg')

@@ -28,7 +28,7 @@ $(function(){
 
         root.each(d => d.current = d);
 
-        const svg = d3.select('#searchResults').append('svg');
+        const svg = d3.select('#searchResults').append('svg')
             .attr("viewBox", [0, 0, width, width])
             .style("font", "10px sans-serif");
 

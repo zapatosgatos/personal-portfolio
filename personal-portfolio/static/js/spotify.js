@@ -24,7 +24,7 @@ $(function(){
         var width = document.getElementById('searchResults').clientWidth;
         var height = width;
         //var svg = d3.select('#searchResults').append('svg');
-        const root = d3.partition(data);
+        const root = d3.partition(response);
 
         root.each(d => d.current = d);
 

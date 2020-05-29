@@ -24,7 +24,8 @@ $(function(){
         var width = document.getElementById('searchResults').clientWidth;
         var height = width;
         var radius = Math.min(width, height) / 2;
-        var color = d3.scaleOrdinal(d3.schemeCategory20b);
+        //var color = d3.scaleOrdinal(d3.schemeCategory10);
+        var color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, response.children.length + 1))
         //var svg = d3.select('#searchResults').append('svg');
         //const root = d3.partition(response);
         //root.each(d => d.current = d);

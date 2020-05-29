@@ -57,7 +57,7 @@ $(function(){
           .enter().append("path")
             .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
             .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
-            .attr("d", d => arc(d.current));
+            .attr("d", d => d3.arc(d.current));
 
         path.filter(d => d.children)
             .style("cursor", "pointer")
@@ -110,7 +110,7 @@ $(function(){
               return +this.getAttribute("fill-opacity") || arcVisible(d.target);
             })
               .attr("fill-opacity", d => arcVisible(d.target) ? (d.children ? 0.6 : 0.4) : 0)
-              .attrTween("d", d => () => arc(d.current));
+              .attrTween("d", d => () => d3.arc(d.current));
 
           label.filter(function(d) {
               return +this.getAttribute("fill-opacity") || labelVisible(d.target);

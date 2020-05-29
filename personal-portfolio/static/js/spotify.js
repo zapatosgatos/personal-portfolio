@@ -25,7 +25,7 @@ $(function(){
         var format = d3.format(",d");
         var width = document.getElementById('searchResults').clientWidth;
         var height = width;
-        var radius = Math.min(width, height) / 2;
+        var radius = width / 6;
         //var color = d3.scaleOrdinal(d3.quantize(d3.interpolateRainbow, response.children.length + 1))
 
         var arc = d3.arc()

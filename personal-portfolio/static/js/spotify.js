@@ -51,6 +51,15 @@ $(function(){
             //.attr("transform", `translate(${width / 2},${width / 2})`);
             .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
+        var arc = d3.arc()
+          .startAngle(d => d.x0)
+          .endAngle(d => d.x1)
+          .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
+          .padRadius(radius * 1.5)
+          .innerRadius(d => d.y0 * radius)
+          .outerRadius(d => Math.max(d.y0 * radius, d.y1 * radius - 1))
+        }
+
         const path = g.append("g")
           .selectAll("path")
           .data(root.descendants().slice(1))
@@ -87,16 +96,6 @@ $(function(){
             .attr("fill", "none")
             .attr("pointer-events", "all")
             .on("click", clicked);
-
-        function arc(d) {
-          d3.arc()
-            .startAngle(d => d.x0)
-            .endAngle(d => d.x1)
-            .padAngle(d => Math.min((d.x1 - d.x0) / 2, 0.005))
-            .padRadius(radius * 1.5)
-            .innerRadius(d => d.y0 * radius)
-            .outerRadius(d => Math.max(d.y0 * radius, d.y1 * radius - 1))
-        }
 
         function clicked(p) {
           parent.datum(p.parent || root);

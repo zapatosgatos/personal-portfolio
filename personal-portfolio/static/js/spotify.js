@@ -33,8 +33,13 @@ $(function(){
         //  .size([2 * Math.PI, radius]);
         //var root = d3.hierarchy(response)
         //    .sum(function (d) { return d.size});
-        const root = d3.partition(response)
+        var part = d3.partition()
           .size([2 * Math.PI, radius]);
+
+        var root = d3.hierarchy(response)
+          .sum(function (d) { return d.size});
+
+        root.each(d => d.current = d);
 
         const svg = d3.select('#searchResults').append('svg')
           .attr('width', width)

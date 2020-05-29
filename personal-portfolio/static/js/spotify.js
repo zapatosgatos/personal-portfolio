@@ -23,6 +23,7 @@ $(function(){
         console.log(response);
         var width = document.getElementById('searchResults').clientWidth;
         var height = width;
+        var radius = Math.min(width, height) / 2;
         //var svg = d3.select('#searchResults').append('svg');
         //const root = d3.partition(response);
         //root.each(d => d.current = d);

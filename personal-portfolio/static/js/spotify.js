@@ -63,7 +63,7 @@ $(function(){
           .selectAll("path")
           .data(root.descendants().slice(1))
           .join("path")
-          .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.response.name); })
+          .attr("fill", d => { while (d.depth > 1) d = d.parent; return color(d.data.name); })
           .attr("fill-opacity", d => arcVisible(d.current) ? (d.children ? 0.6 : 0.4) : 0)
           .attr("d", d => arc(d.current));
 
@@ -72,7 +72,7 @@ $(function(){
           .on("click", clicked);
 
         path.append("title")
-            .text(d => `${d.ancestors().map(d => d.response.name).reverse().join("/")}\n${format(d.value)}`);
+            .text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
 
         var label = g.append("g")
           .attr("pointer-events", "none")
@@ -84,7 +84,7 @@ $(function(){
           .attr("dy", "0.35em")
           .attr("fill-opacity", d => +labelVisible(d.current))
           .attr("transform", d => labelTransform(d.current))
-          .text(d => d.response.name);
+          .text(d => d.data.name);
 
         var parent = g.append("circle")
             .datum(root)

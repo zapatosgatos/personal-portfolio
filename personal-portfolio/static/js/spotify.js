@@ -24,13 +24,18 @@ $(function(){
         var width = document.getElementById('searchResults').clientWidth;
         var height = width;
         //var svg = d3.select('#searchResults').append('svg');
-        const root = d3.partition(response);
-
-        root.each(d => d.current = d);
+        //const root = d3.partition(response);
+        //root.each(d => d.current = d);
+        var partition = d3.partition()
+          .size([2 * Math.PI, radius]);
+        var root = d3.hierarchy()
+            .sum(function (d) { return d.size});
 
         const svg = d3.select('#searchResults').append('svg')
-            .attr("viewBox", [0, 0, width, width])
-            .style("font", "10px sans-serif");
+          .attr('width', width)
+          .attr('height', height)
+          //.attr("viewBox", [0, 0, width, width])
+          .style("font", "10px sans-serif");
 
         const g = svg.append("g")
             .attr("transform", `translate(${width / 2},${width / 2})`);
@@ -116,7 +121,8 @@ $(function(){
           return `rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`;
         }
 
-        return svg.node();
+        //return svg.node();
+
         /*var width = document.getElementById('searchResults').clientWidth;
         var height = width;
         var radius = Math.min(width, height) / 2;

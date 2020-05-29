@@ -77,12 +77,12 @@ $(function(){
             .style("fill", function (d) { return color((d.children ? d : d.parent).data.name); });
 
         g.selectAll(".node")
-            .append("name")
+            .append("text")
             .attr("transform", function(d) {
                 return "translate(" + arc.centroid(d) + ")rotate(" + computeTextRotation(d) + ")"; })
             .attr("dx", "-20") // radius margin
             .attr("dy", ".5em") // rotation align
-            .text(function(d) { return d.parent ? d.data.name : "" });
+            .text(function(d) { return d.parent ? d.data.name : artist });
 
         function computeTextRotation(d) {
           var angle = (d.x0 + d.x1) / Math.PI * 90;

@@ -86,7 +86,7 @@ $(function(){
           .enter().append("path")
             .attr("dy", "0.35em")
             .attr("fill-opacity", d => +labelVisible(d.current))
-            .attr("transform", d => labelTransform(d.current))
+            //.attr("transform", d => labelTransform(d.current))
             .text(d => d.data.name);
 
         var parent = g.append("circle")
@@ -126,7 +126,7 @@ $(function(){
               return +this.getAttribute("fill-opacity") || labelVisible(d.target);
             }).transition(t)
               .attr("fill-opacity", d => +labelVisible(d.target))
-              .attrTween("transform", d => () => labelTransform(d.current));
+              //.attrTween("transform", d => () => labelTransform(d.current));
         }
 
         function arcVisible(d) {

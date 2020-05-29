@@ -41,13 +41,13 @@ $(function(){
 
         root.each(d => d.current = d);
 
-        const svg = d3.select('#searchResults').append('svg')
+        var svg = d3.select('#searchResults').append('svg')
           .attr('width', width)
           .attr('height', height)
           //.attr("viewBox", [0, 0, width, width])
           .style("font", "10px sans-serif");
 
-        const g = svg.append("g")
+        var g = svg.append("g")
             //.attr("transform", `translate(${width / 2},${width / 2})`);
             .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')');
 
@@ -60,7 +60,7 @@ $(function(){
           .outerRadius(d => Math.max(d.y0 * radius, d.y1 * radius - 1))
         }
 
-        const path = g.append("g")
+        var path = g.append("g")
           .selectAll("path")
           .data(root.descendants().slice(1))
           //.join("path")
@@ -77,7 +77,7 @@ $(function(){
             //.text(d => `${d.ancestors().map(d => d.data.name).reverse().join("/")}\n${format(d.value)}`);
             .text(function(d) { return d.parent ? d.data.name : "" });
 
-        const label = g.append("g")
+        var label = g.append("g")
             .attr("pointer-events", "none")
             .attr("text-anchor", "middle")
             .style("user-select", "none")
@@ -90,7 +90,7 @@ $(function(){
             .attr("transform", d => labelTransform(d.current))
             .text(d => d.data.name);
 
-        const parent = g.append("circle")
+        var parent = g.append("circle")
             .datum(root)
             .attr("r", radius)
             .attr("fill", "none")
@@ -107,14 +107,14 @@ $(function(){
             y1: Math.max(0, d.y1 - p.depth)
           });
 
-          const t = g.transition().duration(750);
+          var t = g.transition().duration(750);
 
           // Transition the data on all arcs, even the ones that aren’t visible,
           // so that if this transition is interrupted, entering arcs will start
           // the next transition from the desired position.
           path.transition(t)
               .tween("data", d => {
-                const i = d3.interpolate(d.current, d.target);
+                var i = d3.interpolate(d.current, d.target);
                 return t => d.current = i(t);
               })
             .filter(function(d) {
@@ -139,8 +139,8 @@ $(function(){
         }
 
         function labelTransform(d) {
-          const x = (d.x0 + d.x1) / 2 * 180 / Math.PI;
-          const y = (d.y0 + d.y1) / 2 * radius;
+          var x = (d.x0 + d.x1) / 2 * 180 / Math.PI;
+          var y = (d.y0 + d.y1) / 2 * radius;
           return 'rotate(' + (x - 90) + ') translate(' + y + ',0) rotate(' + (x < 180 ? 0 : 180) + ')';
           //rotate(${x - 90}) translate(${y},0) rotate(${x < 180 ? 0 : 180})`
         }

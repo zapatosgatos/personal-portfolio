@@ -17,6 +17,7 @@ praw_client_id = os.getenv("PRAW_CLIENT_ID")
 praw_secret_key = os.getenv("PRAW_SECRET_KEY")
 spotify_client_id = os.getenv("SPOTIFY_CLIENT_ID")
 spotify_secret_key = os.getenv("SPOTIFY_SECRET_KEY")
+nasa_secret_key = os.getenv("NASA_SECRET_KEY")
 
 app = Flask(__name__, template_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/templates', static_folder='/home/zapatosgatos/personal_portfolio/personal-portfolio/static')
 
@@ -159,6 +160,11 @@ def spotify():
 
 @app.route('/portfolio/mars_weather', methods=["GET","POST"])
 def mars():
+    weather_report = {}
+    r = requests.get(f'https://api.nasa.gov/insight_weather/?api_key={nasa_secret_key}&feedtype=json&ver=1.0')
+    forcast = r.json()
 
-    
-    return render_template('projects/mars_weather.html')
+    for day in forcast:
+        weather_report[day] = day
+
+    return render_template('projects/mars_weather.html', weather_report=weather_report)

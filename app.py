@@ -165,7 +165,8 @@ def mars():
     forcast = r.json()
 
     for day in forcast:
-        print(day)
-        weather_report[day] = 'test'
+        #print(day)
+        if day not in ['sol_keys', 'validity_checks']:
+            weather_report[day] = 'test'
 
     return render_template('projects/mars_weather.html', weather_report=weather_report)

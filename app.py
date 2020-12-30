@@ -165,6 +165,7 @@ def mars():
     forcast = r.json()
 
     for day in forcast:
-        weather_report[day] = day
+        print(day)
+        weather_report[day] = 'test'
 
     return render_template('projects/mars_weather.html', weather_report=weather_report)

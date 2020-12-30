@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="row pt-2">
+    <a class="btn montserrat-font btn-link mr-auto font-16 plain-link" href="/portfolio">Return To Portfolio</a>
+  </div>
+  <div class="row pt-2 pb-2">
+    <h1 class="abel-font mx-auto">Mars Weather Forcast</h1>
+  </div>
+  <hr class="w-100" />
+  <div class="row pt-5">
+    <div class="col-lg-8 order-2 order-lg-1">
+      <div class="input-group pt-5 pt-lg-0 mb-5 mx-auto w-50">
+
+      </div>
+      <br />
+      <div id="searchResults" class="d-none">
+
+      </div>
+    </div>
+
+    <div class="col-lg-4 order-1">
+      <h3 class="montserrat-font pb-3 text-left">This is a page that shows the weather forcast on Mars.</h3>
+      <hr class="pb-3 w-100" />
+      <h5 class="montserrat-font text-left"><strong>Technologies Used:</strong> Flask, Bootstrap, Spotipy, d3.js, AJAX</h5>
+    </div>
+  </div>
+
+{% endblock %}

@@ -155,3 +155,10 @@ def spotify():
         return full_discography
 
     return render_template('projects/spotify_project.html')
+
+
+@app.route('/portfolio/mars_weather', methods=["GET","POST"])
+def mars():
+
+    
+    return render_template('projects/mars_weather.html')

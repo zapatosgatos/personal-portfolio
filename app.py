@@ -163,16 +163,16 @@ def mars():
     individual_day = {}
     weather_report = {}
     r = requests.get(f'https://api.nasa.gov/insight_weather/?api_key={nasa_secret_key}&feedtype=json&ver=1.0')
-    forcast = r.json()
+    forecast = r.json()
 
-    for day in forcast:
+    for day in forecast:
         #print(day)
         if day not in ['sol_keys', 'validity_checks']:
             individual_day = {}
 
-            if 'AT' in forcast[day]:
+            if 'AT' in forecast[day]:
                 #Temp is stored as low, high, average
-                individual_day['Temperature'] = [forcast[day]['AT']['mn'], forcast[day]['AT']['mx'], forcast[day]['AT']['av']]
+                individual_day['Temperature'] = [forecast[day]['AT']['mn'], forecast[day]['AT']['mx'], forecast[day]['AT']['av']]
             else:
                 individual_day['Temperature'] = ['NaN', 'NaN', 'NaN']
 

@@ -193,7 +193,7 @@ def mars():
             #Air Pressure
             if 'PRE' in forecast[day]:
                 #Pressure is stored as low, high, average
-                individual_day['Pressure'] = [round(forecast[day]['PRE']['mn'], 1), round(forecast[day]['PRE']['mx'], 1), round(forecast[day]['PRE']['av']), 1)]
+                individual_day['Pressure'] = [round(forecast[day]['PRE']['mn'], 1), round(forecast[day]['PRE']['mx'], 1), round(forecast[day]['PRE']['av'], 1)]
             else:
                 individual_day['Pressure'] = ['NaN', 'NaN', 'NaN']
 

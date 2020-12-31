@@ -33,6 +33,9 @@ def is_valid_signature(x_hub_signature, data, private_key):
 def convert_temp(temp):
     return ((temp * (9/5)) + 32)
 
+def convert_wind_speed(wind):
+    return (wind * 2.237)
+
 #Handles the github webhook
 @app.route('/update_server', methods=['POST'])
 def webhook():
@@ -173,11 +176,26 @@ def mars():
         if day not in ['sol_keys', 'validity_checks']:
             individual_day = {}
 
+            #Temperature
             if 'AT' in forecast[day]:
                 #Temp is stored as low, high, average
                 individual_day['Temperature'] = [round(convert_temp(forecast[day]['AT']['mn']), 1), round(convert_temp(forecast[day]['AT']['mx']), 1), round(convert_temp(forecast[day]['AT']['av']), 1)]
             else:
                 individual_day['Temperature'] = ['NaN', 'NaN', 'NaN']
+
+            #Wind Speed
+            if 'HWS' in forecast[day]:
+                #Wind Speed is stored as low, high, average
+                individual_day['Wind'] = [round(convert_wind_speed(forecast[day]['HWS']['mn']), 1), round(convert_wind_speed(forecast[day]['HWS']['mx']), 1), round(convert_wind_speed(forecast[day]['HWS']['av']), 1)]
+            else:
+                individual_day['Wind'] = ['NaN', 'NaN', 'NaN']
+
+            #Air Pressure
+            if 'PRE' in forecast[day]:
+                #Pressure is stored as low, high, average
+                individual_day['Pressure'] = [round(forecast[day]['PRE']['mn'], 1), round(forecast[day]['PRE']['mx'], 1), round(forecast[day]['PRE']['av']), 1)]
+            else:
+                individual_day['Pressure'] = ['NaN', 'NaN', 'NaN']
 
             weather_report[day] = individual_day
 

@@ -30,6 +30,9 @@ def is_valid_signature(x_hub_signature, data, private_key):
     mac = hmac.new(encoded_key, msg=data, digestmod=algorithm)
     return hmac.compare_digest(mac.hexdigest(), github_signature)
 
+def convert_temp(temp):
+    return ((temp * (9/5)) + 32)
+
 #Handles the github webhook
 @app.route('/update_server', methods=['POST'])
 def webhook():
@@ -172,7 +175,7 @@ def mars():
 
             if 'AT' in forecast[day]:
                 #Temp is stored as low, high, average
-                individual_day['Temperature'] = [forecast[day]['AT']['mn'], forecast[day]['AT']['mx'], forecast[day]['AT']['av']]
+                individual_day['Temperature'] = [round(convert_temp(forecast[day]['AT']['mn']), 1), round(convert_temp(forecast[day]['AT']['mx']), 1), round(convert_temp(forecast[day]['AT']['av']), 1)]
             else:
                 individual_day['Temperature'] = ['NaN', 'NaN', 'NaN']
 

@@ -10,14 +10,15 @@
   <hr class="w-100" />
   <div class="row pt-5">
     <div class="col-lg-8 order-2 order-lg-1">
-      <div class="input-group pt-5 pt-lg-0 mb-5 mx-auto w-50">
+      <!--<div class="pt-5 pt-lg-0 mb-5 mx-auto">-->
+      <div class="row">
         {% for key, value in weather_report.items() %}
-          <div class="col-lg">
+          <div class="col-lg pr-0">
             <div class="card">
-              <div class="card-header abel-font font-20"><strong>Sol {{ key }}</strong></div>
-              <div class="card-body">
-                <h5>High: {{ value.Temperature[1] }}</h5>
-                <h5>Low: {{ value.Temperature[0] }}</h5>
+              <div class="card-header pl-2 pr-2 abel-font font-16"><strong>Sol {{ key }}</strong></div>
+              <div class="card-body pl-2 pr-2 pb-2">
+                <p class="montserrat-font font-12">High: {{ value.Temperature[1] }} &#176;F</p>
+                <p class="montserrat-font font-12">Low: {{ value.Temperature[0] }} &#176;F</p>
               </div>
             </div>
           </div>

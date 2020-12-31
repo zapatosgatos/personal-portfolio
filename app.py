@@ -160,6 +160,7 @@ def spotify():
 
 @app.route('/portfolio/mars_weather', methods=["GET","POST"])
 def mars():
+    individual_day = {}
     weather_report = {}
     r = requests.get(f'https://api.nasa.gov/insight_weather/?api_key={nasa_secret_key}&feedtype=json&ver=1.0')
     forcast = r.json()
@@ -167,6 +168,9 @@ def mars():
     for day in forcast:
         #print(day)
         if day not in ['sol_keys', 'validity_checks']:
-            weather_report[day] = 'test'
+            individual_day.clear()
+            #Temp is stored as low, high, average
+            individual_day['Temperature'] = [forcast[day]['AT'][2], forcast[day]['AT'][3], forcast[day]['AT'][0]]
+            weather_report[day] = individual_day
 
     return render_template('projects/mars_weather.html', weather_report=weather_report)

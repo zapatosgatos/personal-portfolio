@@ -169,8 +169,13 @@ def mars():
         #print(day)
         if day not in ['sol_keys', 'validity_checks']:
             individual_day.clear()
-            #Temp is stored as low, high, average
-            individual_day['Temperature'] = [forcast[day]['AT']['mn'], forcast[day]['AT']['mx'], forcast[day]['AT']['av']]
+
+            if 'AT' in forcast[day]:
+                #Temp is stored as low, high, average
+                individual_day['Temperature'] = [forcast[day]['AT']['mn'], forcast[day]['AT']['mx'], forcast[day]['AT']['av']]
+            else:
+                individual_day['Temperature'] = ['NaN', 'NaN', 'NaN']
+                
             weather_report[day] = individual_day
 
     return render_template('projects/mars_weather.html', weather_report=weather_report)

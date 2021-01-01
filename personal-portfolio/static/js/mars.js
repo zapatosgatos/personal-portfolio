@@ -1,4 +1,4 @@
-$(function(){
+
   /*$('#subreddit').keypress(function (e) {
     var key = e.which;
     if(key == 13)  // the enter key code
@@ -36,18 +36,17 @@ $(function(){
 		});
 	});*/
 
-  function dayClicked(){
-    if($('#weatherResults').hasClass('d-none')) {
-      $('#weatherResults').toggleClass('d-none');
-    } else {
-      $('#weatherResults').empty();
-    }
+function dayClicked(){
+  if($('#weatherResults').hasClass('d-none')) {
+    $('#weatherResults').toggleClass('d-none');
+  } else {
+    $('#weatherResults').empty();
+  }
 
-    $('weatherResults').append('<div>'
-      + '<h4>Temperature</h4>'
-      + '<h4>Pressure</h4>'
-      + '<h4>Wind Speed</h4>'
-    );
+  $('weatherResults').append('<div>'
+    + '<h4>Temperature</h4>'
+    + '<h4>Pressure</h4>'
+    + '<h4>Wind Speed</h4>'
+  );
 
-  };
-});
+};

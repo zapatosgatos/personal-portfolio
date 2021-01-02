@@ -43,7 +43,7 @@ function dayClicked(){
     $('#weatherResults').empty();
   }
 
-  $('weatherResults').append('<div>'
+  $('#weatherResults').append('<div>'
     + '<h4>Temperature</h4>'
     + '<h4>Pressure</h4>'
     + '<h4>Wind Speed</h4>'

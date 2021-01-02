@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+<script type="text/javascript">var forecast={{weather_report|tojson}}</script>
+  <script src="/static/js/mars.js"></script>
+
   <div class="row pt-2">
     <a class="btn montserrat-font btn-link mr-auto font-16 plain-link" href="/portfolio">Return To Portfolio</a>
   </div>
@@ -15,7 +18,7 @@
         {% for key, value in weather_report.items() %}
           <div class="col-lg pr-0">
             <div class="card" id="">
-              <a class="stretched-link" onclick="dayClicked()">
+              <a id="{{ key }}" class="stretched-link" onclick="dayClicked(this.id, forecast)">
                 <div class="card-header pl-2 pr-2 abel-font font-16"><strong>Sol {{ key }}</strong></div>
                 <div class="card-body pl-2 pr-2 pb-2">
                   <p class="montserrat-font font-12">High: {{ value.Temperature[1] }} &#176;F</p>
@@ -42,6 +45,6 @@
     </div>
   </div>
 
-  <script src="/static/js/mars.js"></script>
+
 
 {% endblock %}

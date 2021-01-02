@@ -36,7 +36,11 @@
 		});
 	});*/
 
-function dayClicked(){
+
+
+function dayClicked(day, forecast){
+  var weather_report = JSON.parse(forecast);
+  console.log(weather_report);
   if($('#weatherResults').hasClass('d-none')) {
     $('#weatherResults').toggleClass('d-none');
   } else {
@@ -44,9 +48,8 @@ function dayClicked(){
   }
 
   $('#weatherResults').append('<div>'
-    + '<h4>Temperature</h4>'
+    + '<h4>High Temperature Sol ' + day + ": " + weather_report[day]['Temperature'][1] + '</h4>'
     + '<h4>Pressure</h4>'
     + '<h4>Wind Speed</h4>'
   );
-
 };

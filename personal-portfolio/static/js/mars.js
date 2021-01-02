@@ -39,7 +39,7 @@
 
 
 function dayClicked(day, forecast){
-  var weather_report = JSON.parse(forecast);
+  var weather_report = forecast;
   console.log(weather_report);
   if($('#weatherResults').hasClass('d-none')) {
     $('#weatherResults').toggleClass('d-none');

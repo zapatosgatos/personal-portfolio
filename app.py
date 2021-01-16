@@ -181,21 +181,21 @@ def mars():
                 #Temp is stored as low, high, average
                 individual_day['Temperature'] = [round(convert_temp(forecast[day]['AT']['mn']), 1), round(convert_temp(forecast[day]['AT']['mx']), 1), round(convert_temp(forecast[day]['AT']['av']), 1)]
             else:
-                individual_day['Temperature'] = ['NaN', 'NaN', 'NaN']
+                individual_day['Temperature'] = ['-', '-', '-']
 
             #Wind Speed
             if 'HWS' in forecast[day]:
                 #Wind Speed is stored as low, high, average
                 individual_day['Wind'] = [round(convert_wind_speed(forecast[day]['HWS']['mn']), 1), round(convert_wind_speed(forecast[day]['HWS']['mx']), 1), round(convert_wind_speed(forecast[day]['HWS']['av']), 1)]
             else:
-                individual_day['Wind'] = ['NaN', 'NaN', 'NaN']
+                individual_day['Wind'] = ['-', '-', '-']
 
             #Air Pressure
             if 'PRE' in forecast[day]:
                 #Pressure is stored as low, high, average
                 individual_day['Pressure'] = [round(forecast[day]['PRE']['mn'], 1), round(forecast[day]['PRE']['mx'], 1), round(forecast[day]['PRE']['av'], 1)]
             else:
-                individual_day['Pressure'] = ['NaN', 'NaN', 'NaN']
+                individual_day['Pressure'] = ['-', '-', '-']
 
             weather_report[day] = individual_day
 

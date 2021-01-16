@@ -47,10 +47,10 @@ function dayClicked(day, forecast){
     $('#weatherResults').empty();
   }
 
-  $('#weatherResults').append('<div class="pl-3">'
+  $('#weatherResults').append(//'<div class="table-responsive pl-3">'
     //+ '<h4>High Temperature Sol ' + day + ": " + weather_report[day]['Temperature'][1] + '</h4>'
-    + '<table id="weatherTable" class="table">'
-    + '<thead class="thread-dark">'
+    '<table id="weatherTable" class="table">'
+    + '<thead class="thead-dark">'
     + '<tr>'
     + '<th scope="col">Location</th>'
     + '<th scope="col">Measurement</th>'
@@ -82,6 +82,6 @@ function dayClicked(day, forecast){
     + '<td>' + weather_report[day]['Pressure'][2] + ' Pa</td>'
     + '</tr>'
     + '</tbody>'
-    + '/table>'
+    + '</table>'
   );
 };
